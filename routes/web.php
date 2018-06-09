@@ -1,5 +1,7 @@
 <?php
 
+use App\Vivienda;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,14 @@
 */
 
 Route::get('/', function () {
-    return view('layout');
+
+	$viviendas = DB::collection('viviendas')->get();
+
+    return view('buildings-list', [
+
+    	'title' => 'Inicio', 
+    	'viviendas' => $viviendas
+
+    ]);
+
 });

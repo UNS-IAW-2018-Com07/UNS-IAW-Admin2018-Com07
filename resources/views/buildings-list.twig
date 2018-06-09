@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+
+{% block stylesheets %}
+	<!-- Estilos propios CSS -->
+	<link rel='stylesheet' href='css/estilo.css'> 
+{% endblock %}
+
+{% block body %}
+    {% set activemenu = "buildings-list" %}
+    {% include 'navbar.twig' %} 
+	{% include 'buildings-list-content.twig' %}
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="js/administradorBusqueda.js"></script>
+{% endblock %}

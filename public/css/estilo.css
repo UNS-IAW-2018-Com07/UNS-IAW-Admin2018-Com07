@@ -1,0 +1,56 @@
+body{
+    overflow-x: hidden;
+}
+
+.margenSuperior{
+    margin-top: 15px;
+}
+
+.item-listado{
+    border-radius: 4px; 
+    margin-top: 7px;
+}
+
+.list-group-item:last-child {
+    margin-bottom: 7px; 
+}
+
+.margenIzquierdo{
+    margin-left: 5px; 
+}
+
+.withoutMargin{
+    margin-bottom: 0%; 
+}
+
+.centeredContainer{
+    width: 70%; 
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.rowAcotada{
+    height: 27px; 
+}
+
+.rowConPadding{
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.checkedStar{
+    color: orange; 
+}
+
+.nonCheckedStar{
+	color: lightgrey; 
+}
+
+.mediaContainer{
+    margin-left: 5%; 
+}
+
+#contenedorListado{
+    display: flex;
+    flex-direction: column;
+}

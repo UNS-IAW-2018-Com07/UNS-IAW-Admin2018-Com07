@@ -7,12 +7,14 @@
     <link rel='stylesheet' href='css/bootstrap/bootstrap-social.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='css/navbar.css' >
+    {% block stylesheets %}{% endblock %}
     <link rel='stylesheet' href='css/estiloRosa.css' data-color='Rosa' id='linkEstilo'>
-    <title>Inicio</title>
+    <title>{{title}}</title>
   </head>
   <body>
-  	{% include 'navbar.twig' %}
+  	{% block body %}{% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>

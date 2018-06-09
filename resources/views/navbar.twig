@@ -11,6 +11,16 @@
         </div>
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
+            {% if activemenu == 'buildings-list' %}
+                <form class="navbar-form navbar-left">
+                    <div class="input-group">
+                        <input id="form-control-busqueda" type="search" class="form-control" placeholder="Búsqueda por dirección">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btnOscuro" onclick="busquedaPorPalabra();">Buscar</button>
+                        </span>
+                    </div>
+                </form>
+            {% endif %} 
         </div>
     </div>
 </header>
