@@ -1,3 +1,15 @@
 .margenSuperior{
     margin-top: 15px;
 }
+
+.text-dropdown{
+	text-align: right;
+	height: 100%;
+	line-height: 100%;
+	width: 100%;
+}
+
+.dropdownButton{
+	width: 100%;
+	text-align: center; 
+}
