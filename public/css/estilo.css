@@ -2,13 +2,25 @@ body{
     overflow-x: hidden;
 }
 
+.icono{
+    padding-right: 5px;
+}
+
+#barraListado{
+    display: block;
+}
+
+#barraPropietarios{
+    display: none;
+}
+
 .margenSuperior{
     margin-top: 15px;
 }
 
 .item-listado{
     border-radius: 4px; 
-    margin-top: 7px;
+    margin: 7px;
 }
 
 .list-group-item:last-child {
@@ -50,7 +62,4 @@ body{
     margin-left: 5%; 
 }
 
-#contenedorListado{
-    display: flex;
-    flex-direction: column;
-}
+.barraPropietarios

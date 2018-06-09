@@ -11,22 +11,11 @@ use App\Vivienda;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-// */
-
-// Route::get('/', function () {
-
-// 	$viviendas = DB::collection('viviendas')->get();
-
-//     return view('buildings-list', [
-
-//     	'title' => 'Inicio', 
-//     	'viviendas' => $viviendas
-
-//     ]);
-
-// });
+*/
 
 Route::get('/', 'ControladorViviendas@index');
+
+Route::delete('/eliminarVivienda/{id}', 'ControladorViviendas@destroy');
 
 Route::get('/agregarVivienda', function () {
 

@@ -11,10 +11,6 @@
     font-weight: bold;
 }
 
-.listadoViviendas{
-    padding-left: 10px;
-}
-
 .btnOscuro {
     font-weight: bold;
     background-color: #c4445a;
@@ -27,19 +23,22 @@
     background-color: #ffeff2;
 }
 
+.botonSinFondo{
+    font-weight: bold;
+    color: #c4445a;
+    background: transparent;
+}
+
+.botonSinFondo:hover{
+    color: #c4445a;
+    background-color: #ffeff2;
+}
+
 .btnOscuro:focus {
     color: white;
     background-color: #c4445a;
     outline: none !important;
     box-shadow: 0 0 20px #e9614c;
-}
-
-.barraComentarios{
-    float: right;
-}
-
-.barraDetallesVivienda{ 
-    float: left;  
 }
 
 .alert-estilo {

@@ -1,4 +1,12 @@
 <div class="container cuerpo-pagina">
+
+    <div class="row rowConPadding">
+        <div id="botonesAdministrar">
+            <button id="botonAdministrarViviendas" type="button" class="btn btnOscuro" disabled onClick="ocultarPropietarios();">Administrar Viviendas</button>
+            <button id="botonAdministrarPropietarios" type="button" class="btn btnOscuro" onClick="mostrarPropietarios();">Administrar Propietarios</button>
+        </div>
+    </div>
+
     <div class="row center-block">  
         <div id="barraListado" class="row listadoViviendas">
             <ul id="contenedorListado" class="list-group">
@@ -13,6 +21,78 @@
                     {% endfor %}
                 </div>
             </ul>
+        </div>
+    </div>
+
+    <div class="row center-block">  
+        <div id="barraPropietarios" class="row listadoViviendas">
+            <ul id="contenedorPropietarios" class="list-group">
+                <div class="row">
+                    {% if mensaje %}
+                        <div class="alert alert-estilo" role="alert">
+                            {{mensaje}}
+                        </div>
+                    {% endif %}
+                    {% for propietario in propietarios %}
+                        {% include 'owner-data.twig' %}
+                    {% endfor %}
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Modal eliminar vivienda -->
+<div class="modal fade" id="modalEliminarVivienda" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center">¿Está seguro que desea eliminar la vivienda?</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-title text-center">Una vez eliminada no podrá revertirlo.</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btnOscuro center-block" data-dismiss="modal" id="botonEliminarVivienda">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal eliminar propietario -->
+<div class="modal fade" id="modalEliminarPropietario" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center">¿Está seguro que desea eliminar el propietario?</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-title text-center">También serán eliminadas todas sus viviendas asociadas. <br> Una vez eliminado no podrá revertirlo.</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btnOscuro center-block" data-dismiss="modal">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal operacion exitosa -->
+<div class="modal fade" id="modalOperacionExitosa" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center">Operación exitosa.</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-title text-center">Se ha eliminado la vivienda con éxito.</h5>
+            </div>
         </div>
     </div>
 </div>

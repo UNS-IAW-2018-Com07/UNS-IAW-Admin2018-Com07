@@ -1,43 +1,26 @@
-<li class="list-group-item item-listado marginLeft col-xs-11 col-sm-11 col-md-5 col-lg-6" id={{vivienda._id}} >
-    <div class="media"> 
-        <div class="media-left"> 
-            <img class="media-left media-middle img-fluid" src={{'/public/'~vivienda.imagenes[0]}} alt="Imagen inmueble" width="200px"> 
-        </div>
-        <div class="media-body"> 
-            <p class="card-title">Precio: $ {{vivienda.precio}}</p>
-            <p class="card-title">{{vivienda.operacion}} - {{vivienda.tipoVivienda}}</p>
-            {% set cantEstrellas = vivienda.calificacion %} 
-            {% include 'rating.twig' %} 
-            {% if vivienda.tipoVivienda == "Departamento" %}
-                <p class="card-text">  {{ vivienda.direccion ~ ' - '}} {{'Piso ' ~ vivienda.piso ~ ' Dpto ' ~ vivienda.numeroDepto}} </p>
-            {% else %}
-                <p class="card-text"> {{vivienda.direccion}} </p> 
-            {% endif %}
-             <button 
-                 type="button" class="btn btn-primary btnOscuro pull-right margenIzquierdo" data-toggle="modal" data-target="#modalEliminar">
-                 Eliminar
-            </button>
-            <a class="btn btnOscuro pull-right" href={{'/viviendas/'~vivienda._id}}> Editar</a>
-        </div>
-    </div>
-</li> 
-
-<!-- Modal -->
-<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center">¿Está seguro que desea eliminar la vivienda?</h4>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <li class="list-group-item item-listado marginLeft" id={{vivienda._id}} >
+        <div class="media"> 
+            <div class="media-left"> 
+                <img class="media-left media-middle img-fluid" src={{'/public/'~vivienda.imagenes[0]}} alt="Imagen inmueble" width="200px"> 
             </div>
-            <div class="modal-body">
-                <h5 class="modal-title text-center">Una vez eliminada no podrá revertirlo.</h5>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btnOscuro center-block" data-dismiss="modal">
-                    Eliminar
+            <div class="media-body"> 
+                <p class="card-title">Precio: $ {{vivienda.precio}}</p>
+                <p class="card-title">{{vivienda.operacion}} - {{vivienda.tipoVivienda}}</p>
+                {% set cantEstrellas = vivienda.calificacion %} 
+                {% include 'rating.twig' %} 
+                {% if vivienda.tipoVivienda == "Departamento" %}
+                    <p class="card-text">  {{ vivienda.direccion ~ ' - '}} {{'Piso ' ~ vivienda.piso ~ ' Dpto ' ~ vivienda.numeroDepto}} </p>
+                {% else %}
+                    <p class="card-text"> {{vivienda.direccion}} </p> 
+                {% endif %}
+                 <button 
+                     type="button" class="btn botonSinFondo pull-right margenIzquierdo" onclick="confirmarEliminarVivienda('{{vivienda._id}}');">
+                     Eliminar
                 </button>
+                <a class="btn botonSinFondo pull-right" href={{'/viviendas/'~vivienda._id}}> Editar</a>
             </div>
         </div>
-    </div>
+    </li> 
 </div>
+
