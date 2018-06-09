@@ -1,0 +1,54 @@
+{% extends 'layout.twig' %}
+
+{% block stylesheets %}
+	<!-- Estilos propios CSS -->
+	<link rel='stylesheet' href='css/agregarVivienda.css'> 
+  <link rel='stylesheet' href='css/navbar.css' >
+{% endblock %}
+
+{% block body %}
+    {% include 'navbar.twig' %} 
+    <div class="container cuerpo-pagina">
+        <div class="row center-block margenSuperior">
+          <div class="row"> 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <label>Tipo de operación: </label>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="tipoOp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  - Seleccione -
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="tipoOp">
+                  <li><a href="#">Venta</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Alquiler</a></li>
+                </ul>
+              </div>
+            </div> 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <p>Tipo de vivienda: </p>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="tipoViv" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  - Seleccione -
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="tipoViv">
+                  <li><a href="#">Casa</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Departamento</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+            <div class="checkbox"> 
+                <label for="Compartido">
+                    <input type="checkbox" id="Compartido">Compartido
+                </label> 
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="public/javascripts/administradorListado.js"></script>
+{% endblock %}

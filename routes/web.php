@@ -11,17 +11,35 @@ use App\Vivienda;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+// */
 
-Route::get('/', function () {
+// Route::get('/', function () {
 
-	$viviendas = DB::collection('viviendas')->get();
+// 	$viviendas = DB::collection('viviendas')->get();
 
-    return view('buildings-list', [
+//     return view('buildings-list', [
 
-    	'title' => 'Inicio', 
-    	'viviendas' => $viviendas
+//     	'title' => 'Inicio', 
+//     	'viviendas' => $viviendas
 
+//     ]);
+
+// });
+
+Route::get('/', 'ControladorViviendas@index');
+
+Route::get('/agregarVivienda', function () {
+
+    return view('add-building', [
+    	'title' => 'Agregar Vivienda'
+    ]);
+
+});
+
+Route::get('/login', function () {
+
+    return view('login', [
+    	'title' => 'Iniciar Sesion'
     ]);
 
 });
