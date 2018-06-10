@@ -19,6 +19,8 @@ Route::delete('/eliminarVivienda/{id}', 'ControladorViviendas@destroy');
 
 Route::get('/agregarVivienda', 'ControladorViviendas@agregarVivienda');
 
+Route::post('/agregarNuevaVivienda', 'ControladorViviendas@store');
+
 Route::get('/login', function () {
 
     return view('login', [
