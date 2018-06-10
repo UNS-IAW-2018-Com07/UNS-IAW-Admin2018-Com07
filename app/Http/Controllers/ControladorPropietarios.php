@@ -12,9 +12,15 @@ class ControladorPropietarios extends Controller{
 
         if(Propietario::create(
             request(['nombre', 'cuit', 'telefono','correoElectronico'])))
-            return redirect('/alert/ok/propietario');
+            return view('alert',[
+                'title' => 'Operación exitosa.',
+                'href' => '/agregarPropietario'
+            ]);
         else
-            return redirect('/alert/error/propietario');
+            return view('alert',[
+                'title' => 'Ocurrió un error inesperado.',
+                'href' => '/agregarPropietario'
+            ]);
 
     }
 
