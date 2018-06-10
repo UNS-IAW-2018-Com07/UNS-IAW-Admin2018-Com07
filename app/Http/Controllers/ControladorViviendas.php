@@ -35,6 +35,8 @@ class ControladorViviendas extends Controller{
     }
 
     public function store(Request $request){
-        $name = $request->input('name');
+        $input = $request->all();
+        // Vivienda::save($input);
+        return $input; 
     }
 }

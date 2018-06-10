@@ -48,46 +48,46 @@
 				</div>
 			</div>
 			<div class="row form-row">
-				<div class="form-group col-xs-12 col-sm-8 col-md-8 col-lg-10">
-	    			<label for="direccion">Direccion</label>
+				<div class="form-group col-xs-12 col-sm-8 col-md-8 col-lg-10" id="direccionform">
+	    			<label for="direccion" id="direccionlabel">Direccion</label>
 	    			<input type="text" class="form-control" id="direccion">
 	  			</div>
-	  			<div id="formPiso" class="form-group col-xs-6 col-sm-2 col-md-2 col-lg-1">
-	    			<label for="piso">Piso</label>
+	  			<div class="form-group col-xs-6 col-sm-2 col-md-2 col-lg-1" id="pisoform">
+	    			<label for="piso" id="pisolabel">Piso</label>
 	    			<input type="text" class="form-control" id="piso" disabled>
 	  			</div>
-	  			<div id="formNDpto" class="form-group col-xs-6 col-sm-2 col-md-2 col-lg-1">
-	    			<label for="nroDpto">Nº dpto</label>
+	  			<div class="form-group col-xs-6 col-sm-2 col-md-2 col-lg-1" id="nroDptoform">
+	    			<label for="nroDpto" id="nroDptolabel">Nº dpto</label>
 	    			<input type="text" class="form-control" id="nroDpto" disabled>
 	  			</div>
 	  		</div>
 			<div class="row form-row">
-				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3">
-				  <label for="amb">Ambientes</label>
+				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="ambform">
+				  <label for="amb" id="amblabel">Ambientes</label>
 				  <input class="form-control" id="amb">
 				</div>
-				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3">
-				  <label for="dorm">Dormitorios</label>
+				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="dormform">
+				  <label for="dorm" id="dormlabel">Dormitorios</label>
 				  <input class="form-control" id="dorm">
 				</div>
-				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3">
-			  		<label for="ban">Baños</label>
+				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="banform">
+			  		<label for="ban" id="banlabel">Baños</label>
 			  		<input class="form-control" id="ban">
 				</div>
-				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3">
-			  		<label for="coch">Cocheras</label>
+				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="cochform">
+			  		<label for="coch" id="cochlabel">Cocheras</label>
 			  		<input class="form-control" id="coch">
 				</div>
-				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3">
-				  <label for="precio">Precio</label>
+				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="precioform">
+				  <label for="precio" id="preciolabel">Precio</label>
 				  <input class="form-control" id="precio">
 				</div>
-				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3">
-				  <label for="construccion">Año Construcción</label>
+				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="construccionform">
+				  <label for="construccion" id="construccionlabel">Año Construcción</label>
 				  <input class="form-control" id="construccion">
 				</div>
-				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3">
-				  <label for="metCuad">Metros cuadrados</label>
+				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="metCuadform">
+				  <label for="metCuad" id="metCuadlabel">Metros cuadrados</label>
 				  <input class="form-control" id="metCuad">
 				</div>
 			</div>
@@ -114,13 +114,13 @@
 	                <h4 class="modal-title text-center"> Datos inválidos </h4>
 	            </div>
 	            <div class="modal-body">
-	                <h5 class="modal-title text-center" id="modal-agregarViv"></h5>
+	                <p id="modal-agregarViv"></p>
 	            </div>
-	            <div class="modal-footer">
-	            	<button type="button" class="close btn btnOscuro center-block" data-dismiss="modal" aria-label="Close">
-	                    Cerrar
-	                </button>
-	            </div>
+				<div class="modal-footer">
+                    <button type="button" class="btn btnOscuro center-block" data-dismiss="modal">
+                        Cerrar
+                    </button>
+                </div>
 	        </div>
 	    </div>
 	</div>

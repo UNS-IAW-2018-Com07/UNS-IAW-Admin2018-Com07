@@ -2,6 +2,14 @@
     margin-top: 15px;
 }
 
+.media-body{
+  text-align: justify;
+}
+
+.modal-header {
+    padding: 10px 10px;
+}
+
 .form-control-feedback{
   margin-right: 10px; 
 }
