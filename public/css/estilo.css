@@ -61,3 +61,16 @@ body{
 .mediaContainer{
     margin-left: 5%; 
 }
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+
+.espacio{
+    margin-right: 1px;
+    margin-left: 1px;
+}

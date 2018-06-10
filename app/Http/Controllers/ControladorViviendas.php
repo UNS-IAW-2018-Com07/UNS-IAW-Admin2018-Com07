@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 class ControladorViviendas extends Controller{
 
     public function index(){
-    	$viviendas = Vivienda::all(); 
-    	$propietarios = Propietario::all(); //ordenar por cuit o nombre?
+        $viviendas = Vivienda::all(); 
+        $propietarios = Propietario::all(); //ordenar por cuit o nombre?
 
-	    return view('buildings-list', [
-	    	'title' => 'Inicio', 
-	    	'viviendas' => $viviendas,
-	    	'propietarios' => $propietarios
-	    ]);
+        return view('buildings-list', [
+            'title' => 'Inicio', 
+            'viviendas' => $viviendas,
+            'propietarios' => $propietarios
+        ]);
     }
 
     public function destroy($id){

@@ -21,6 +21,17 @@
                     </div>
                 </form>
             {% endif %} 
+
+            <ul class="nav navbar-nav float-right">
+                {% if activemenu == 'buildings-list' %}
+                    <li><a id="botonAgregarPropietarios"href="/agregarPropietario">Añadir propietario</a></li>
+
+                    <li> <a id="botonAgregarVivienda" href="/agregarVivienda">Añadir vivienda</a></li>
+                {% endif %}
+            </ul>
+
         </div>
     </div>
+
+
 </header>

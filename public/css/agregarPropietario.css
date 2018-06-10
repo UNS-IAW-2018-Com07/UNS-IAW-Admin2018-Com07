@@ -1,0 +1,15 @@
+.margenSuperior{
+    margin-top: 15px;
+}
+
+.titulo {
+    margin-top: 52px;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
+
+.rowConPadding{
+    padding-top: 30px; 
+    padding-bottom: 7px; 
+}
