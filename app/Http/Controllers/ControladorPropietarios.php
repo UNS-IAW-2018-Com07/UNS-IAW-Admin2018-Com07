@@ -10,18 +10,30 @@ class ControladorPropietarios extends Controller{
 
     public function destroy($id){
 
-    	$cuit = Propietario::find($id,['cuit'])->cuit;
+    	$prop = Propietario::find($id,['cuit']);
 
-    	$collection = Vivienda::where('propietario', $cuit)->get(['_id']);
+        if($prop){
 
-    	$array_ids;
-    	foreach ($collection as $id)
-    		$array_ids[]=$id->_id;
+            $cuit=$prop->cuit;
 
-     	Vivienda::destroy($array_ids);
+            $collection = Vivienda::where('propietario', $cuit)->get(['_id']);
 
-     	//Retorna si pudo eliminar el propietario o dio error, pero no dice nada sobre que paso con las viviendas.
+            $array_ids=array();
 
-    	return Propietario::destroy($id); //deberiamos ver que se desaparezcan los li de las viviendas que borramos.
+            foreach ($collection as $id)
+                $array_ids[]=$id->_id;
+
+            Vivienda::destroy($array_ids);
+
+            if(Propietario::destroy($id)){
+                return response($array_ids,200); 
+            }
+            else 
+                return response("No existe el propietario", 404);
+            }
+        else
+            return response("No existe el propietario", 404);
+
+    	
     }
 }

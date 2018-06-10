@@ -9,20 +9,25 @@ use Illuminate\Http\Request;
 class ControladorViviendas extends Controller{
 
     public function index(){
-    	$viviendas = Vivienda::all(); 
-    	$propietarios = Propietario::all(); //ordenar por cuit o nombre?
+        $viviendas = Vivienda::all(); 
+        $propietarios = Propietario::all(); //ordenar por cuit o nombre?
 
-	    return view('buildings-list', [
-	    	'title' => 'Inicio', 
-	    	'viviendas' => $viviendas,
-	    	'propietarios' => $propietarios
-	    ]);
+        return view('buildings-list', [
+            'title' => 'Inicio', 
+            'viviendas' => $viviendas,
+            'propietarios' => $propietarios
+        ]);
     }
 
     public function destroy($id){
 
-    	return Vivienda::destroy($id);
-
+    	// if(Vivienda::find("1")){
+     //        Vivienda::destroy("1");
+     //        return response("bien",200);
+     //    }
+     //    else
+     //       return response("mal",404);  
+        return Vivienda::findOrFail($id)->destroy($id);
     }
 
     public function agregarVivienda(){

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -11,14 +11,18 @@
 |
 */
 
-Route::get('/', 'ControladorViviendas@index');
 
+
+//VIVIENDAS
 Route::delete('/eliminarVivienda/{id}', 'ControladorViviendas@destroy');
 
 Route::get('/agregarVivienda', 'ControladorViviendas@agregarVivienda');
 
 Route::post('/agregarNuevaVivienda', 'ControladorViviendas@store');
 
+Route::get('/', 'ControladorViviendas@index');
+
+//LOGIN
 Route::get('/login', function () {
 
     return view('login', [
@@ -27,4 +31,11 @@ Route::get('/login', function () {
 
 });
 
+//PROPIETARIOS
 Route::delete('/eliminarPropietario/{id}', 'ControladorPropietarios@destroy');
+
+Route::get('/agregarPropietario', function(){
+	return view('add-owner',[
+		'title' => 'Añadir propietario'
+	]);
+});
