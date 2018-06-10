@@ -14,7 +14,6 @@ function agregarVivienda(){
 	var modalBody = document.getElementById("modal-agregarViv"); 
 	modalBody.innerHTML = ""; 
 	camposError = document.querySelectorAll('.has-error'); 
-	console.log(camposError); 
 	camposError.forEach(eliminarFormatoError); 
 
 	var li = document.querySelectorAll('li.active')[0]; 
@@ -22,13 +21,20 @@ function agregarVivienda(){
 	
 	var tipoOp = document.getElementById("tipoOp").value;
 	var tipoViv = document.getElementById("tipoViv").value;
-	var comp = document.getElementById("comp").value;
+	var comp = (document.getElementById("comp").value) == 'Si'; 
 
 	var direccion = document.getElementById("direccion").value; 
+	direccion = direccionCorrecta(direccion, tipoViv); 
 
 	if(tipoViv=='Departamento'){
 		var piso = document.getElementById("piso").value; 
 		var nroDpto = document.getElementById("nroDpto").value; 
+		if(!piso | !nroDpto){
+			var modalBody = document.getElementById("modal-agregarViv");
+			var texto = "- Los campos <b>Piso</b> y <b>Nº dpto</b> no deben ser vacíos. <br>"; 
+			modalBody.innerHTML = modalBody.innerHTML + texto;  
+			direccion = null; 
+		}
 	}
 
 	var ambientes = document.getElementById("amb").value; 
@@ -47,15 +53,47 @@ function agregarVivienda(){
 	metCuadr = esEntero('metCuad',metCuadr);
 	var descripcion = document.getElementById("descripcion").value; 
 
-
-	// $.ajax({
-	//     url: '/agregarVivienda/'+id,
-	//     type: 'POST',
-	//     success: function(result) {
-	//         $("#modalOperacionExitosa").modal();
-	//         document.getElementById(id).style.display = "none";
-	//     }
-	// });
+	if(!ambientes | !cocheras | !dormitorios | !banios | !construccion | !precio | !metCuadr | !direccion){
+		$("#modalErrorAgregarVivienda").modal();
+	}
+	else {
+		var json = {
+			tipoVivienda: tipoViv, 
+			compartido: comp, 
+			operacion: tipoOp, 
+			direccion: direccion,
+			precio: precio, 
+			anioConstruccion: construccion, 
+			metrosCuadrados: metCuadr, 
+			cantAmbientes: ambientes, 
+			cantBanios: banios, 
+			cantCocheras: cocheras, 
+			cantDormitorios: dormitorios, 
+			descripcion: descripcion, 
+			propietario: id_prop
+		};
+		if(tipoViv=='Departamento'){
+			json.piso = piso; 
+			json.numeroDepto = nroDpto;
+		}
+		$.ajax({
+			url: '/agregarNuevaVivienda',
+			method: "POST",
+			data: json, 
+			beforeSend: function(request) {
+			    var token = $('meta[name="csrf-token"]').attr('content');
+				request.setRequestHeader('X-CSRF-TOKEN', token);
+			},
+			success: function(input) {
+				console.log(input); 
+		      	// $("#modalOperacionExitosa").modal();
+		       // 	document.getElementById(id).style.display = "none";
+			},
+			error: function(err) {
+			   	// $("#modalOperacionFallida").modal();
+			}
+		 });
+	}
 }
 
 function esEntero(id, val){
@@ -63,25 +101,26 @@ function esEntero(id, val){
 		return parseInt(val); 
 	}
 	else {
-		notifyModal(id); 
+		notifyModalInteger(id); 
 		showError(id); 
 		return null; 
 	}
 }
 
-function notifyModal(id){
+function notifyModalInteger(id){
 	var modalBody = document.getElementById("modal-agregarViv"); 
 	var input = document.getElementById(id);
-	var nombre = input.previousSibling.innerHTML; 
-	modalBody.innerHTML = modalBody.innerHTML + nombre; 
-	console.log(modalBody.innerHTML); 
+	var nombre = document.getElementById(id+"label").innerHTML; 
+
+	var texto = "- El campo <b>"+nombre+"</b> debe ser un número entero. <br>"; 
+	modalBody.innerHTML = modalBody.innerHTML + texto; 
 }
 
 function showError(id){
-	console.log(id); 
 	var input = document.getElementById(id);
-	var label = input.previousSibling; 
-	var form = input.parentNode; 
+	var label = document.getElementById(id+"label");
+	var form = document.getElementById(id+"form");
+
 	form.className = "form-group has-error has-feedback col-xs-6 col-sm-4 col-md-3 col-lg-3"; 
 	label.className = "control-label"; 
 	input.setAttribute("aria-describedby", "inputError2Status");
@@ -101,10 +140,10 @@ function showError(id){
 
 function eliminarFormatoError(form){
 	form.className = "form-group col-xs-6 col-sm-4 col-md-3 col-lg-3";
+	var id = form.id.split("form")[0]; 
 
-	var id = form.firstElementChild.getAttribute('for'); 
-	var texto = form.firstElementChild.innerHTML; 
-	var input = form.children[1]; 
+	var texto = document.getElementById(id+"label").innerHTML;
+	var input = document.getElementById(id);
 
 	while (form.firstChild) {
 	    form.removeChild(form.firstChild);
@@ -112,6 +151,7 @@ function eliminarFormatoError(form){
 
 	var label = document.createElement("label"); 
 	label.setAttribute("for", id);
+	label.id = id+"label"; 
 	var texto = document.createTextNode(texto);
     label.appendChild(texto);
 
@@ -120,5 +160,14 @@ function eliminarFormatoError(form){
 }
 
 function direccionCorrecta(direccion){
-	return true; 
+	if(!direccion){
+		notifyModalDireccion(); 
+	}
+	return direccion; 
+}
+
+function notifyModalDireccion(){
+	var modalBody = document.getElementById("modal-agregarViv");
+	var texto = "- La <b> Dirección </b> debe ser de Bahía Blanca. <br>"; 
+	modalBody.innerHTML = modalBody.innerHTML + texto;  
 }
