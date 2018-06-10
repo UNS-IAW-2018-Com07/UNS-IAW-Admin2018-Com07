@@ -1,3 +1,21 @@
 .margenSuperior{
     margin-top: 15px;
 }
+
+textarea {
+  width: 100% !important;
+  border: 0px;
+  resize: none;
+}
+
+.text-dropdown{
+	text-align: right;
+	height: 100%;
+	line-height: 100%;
+	width: 100%;
+}
+
+.dropdownButton{
+	width: 100%;
+	text-align: center; 
+}

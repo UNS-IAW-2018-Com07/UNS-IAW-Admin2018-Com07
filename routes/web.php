@@ -15,13 +15,7 @@ Route::get('/', 'ControladorViviendas@index');
 
 Route::delete('/eliminarVivienda/{id}', 'ControladorViviendas@destroy');
 
-Route::get('/agregarVivienda', function () {
-
-    return view('add-building', [
-    	'title' => 'Agregar Vivienda'
-    ]);
-
-});
+Route::get('/agregarVivienda', 'ControladorViviendas@agregarVivienda');
 
 Route::get('/login', function () {
 

@@ -25,4 +25,12 @@ class ControladorViviendas extends Controller{
 
     }
 
+    public function agregarVivienda(){
+        $propietarios = Propietario::all();
+
+        return view('add-building', [
+        'title' => 'Agregar Vivienda',
+        'propietarios' => $propietarios
+        ]);
+    }
 }
