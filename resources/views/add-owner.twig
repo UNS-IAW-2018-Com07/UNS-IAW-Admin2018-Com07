@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block body %}
+
 	{% include 'navbar.twig' %} 
 
 	<div class="container">
@@ -19,31 +20,40 @@
 			<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 				<div class="panel panel-default">
 				  	<div class="panel-body">
+				  		<form method="POST" action="/agregarPropietario">
+				  			{{ csrf_field() }}
 		                	<label>Nombre propietario</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="nombre">
+				    		    <input class="form-control" type="text" id="nombre" name="nombre">
 				    		</div>
 				    		<label>CUIT</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="cuit">
+				    		    <input class="form-control" type="text" id="cuit" name="cuit">
 				    		</div>
 				    		<label>Correo electrónico</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="email">
+				    		    <input class="form-control" type="text" id="email" name="correoElectronico">
 				    		</div>
 				    		<label>Teléfono</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="telefono">
+				    		    <input class="form-control" type="text" id="telefono" name="telefono">
 				    		</div>
-				    		<button class="btn btnOscuro btn-block" onclick="agregarPropietario();">Agregar</button>
+				    		<button type="submit" class="btn btnOscuro btn-block">Agregar</button>
+				    	</form>
 				    </div>
 				</div>
+				{% if errors.any() %}
+				 <div class="alert alert-danger">
+		    		<ul>
+		    			{% for error in errors.all() %}
+                			<li>{{ error }}</li>
+            			{% endfor %}
+		    		</ul>
+		    	</div>
+				{% endif %}
+			 	
 			</div>
 		</div>
 	</div>
 	
-{% endblock %}
-
-{% block scripts %}
-	  <script src="js/administradorAgregarPropietario.js"></script>
 {% endblock %}

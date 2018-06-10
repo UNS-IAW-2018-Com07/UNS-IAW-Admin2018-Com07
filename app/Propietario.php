@@ -7,5 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 class Propietario extends Eloquent {
 
     protected $collection = 'propietarios';
+
+    protected $guarded = ['_id'];
     
 }

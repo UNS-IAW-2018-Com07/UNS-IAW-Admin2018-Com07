@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class ControladorViviendas extends Controller{
 
     public function index(){
-        $viviendas = Vivienda::all(); 
-        $propietarios = Propietario::all(); //ordenar por cuit o nombre?
+        $viviendas = Vivienda::orderBy('direccion', 'ASC')->get();
+        $propietarios = Propietario::orderBy('cuit', 'ASC')->get(); 
 
         return view('buildings-list', [
             'title' => 'Inicio', 
@@ -31,7 +31,7 @@ class ControladorViviendas extends Controller{
     }
 
     public function agregarVivienda(){
-        $propietarios = Propietario::all();
+        $propietarios = Propietario::orderBy('cuit', 'ASC')->get();
 
         return view('add-building', [
             'title' => 'Agregar Vivienda',

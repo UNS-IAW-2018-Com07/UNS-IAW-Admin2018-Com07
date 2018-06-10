@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Vivienda;
 use App\Propietario;
-use Illuminate\Http\Request;
+use App\Http\Requests\AddOwnerRequest;
 
 class ControladorPropietarios extends Controller{
+
+    public function store(AddOwnerRequest $request){
+
+        if(Propietario::create(
+            request(['nombre', 'cuit', 'telefono','correoElectronico'])))
+            return redirect('/alert/ok/propietario');
+        else
+            return redirect('/alert/error/propietario');
+
+    }
 
     public function destroy($id){
 

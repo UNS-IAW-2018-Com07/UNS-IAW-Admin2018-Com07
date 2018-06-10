@@ -39,3 +39,19 @@ Route::get('/agregarPropietario', function(){
 		'title' => 'Añadir propietario'
 	]);
 });
+
+Route::post('/agregarPropietario', 'ControladorPropietarios@store');
+
+//ALERTS
+Route::get('/alert/error/propietario', function(){
+	return view('alert',[
+		'title' => 'Hubo un error inesperado.'
+
+	]);
+});
+
+Route::get('/alert/ok/propietario', function(){
+	return view('alert',[
+		'title' => 'Operación exitosa.'
+	]);
+});
