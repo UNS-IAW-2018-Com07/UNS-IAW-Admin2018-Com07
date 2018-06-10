@@ -1,7 +1,5 @@
 <?php
 
-use App\Vivienda;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +30,5 @@ Route::get('/login', function () {
     ]);
 
 });
+
+Route::delete('/eliminarPropietario/{id}', 'ControladorPropietarios@destroy');

@@ -1,7 +1,30 @@
-function eliminarPropietario(cuit){
+function confirmarEliminarPropietario(id){
 
-$("#modalEliminarPropietario").modal();
+	document.getElementById('botonEliminarPropietario').setAttribute('data-id',id);
 
-//si dice que si, elimino con la id que ya tengo
+	$("#modalEliminarPropietario").modal();
+
+}
+
+function eliminarPropietario(elem){
+
+	var id=elem.dataset.id;
+
+	$.ajax({
+	    url: '/eliminarPropietario/'+id,
+	    method: "DELETE",
+	    beforeSend: function(request) {
+	      var token = $('meta[name="csrf-token"]').attr('content');
+	      request.setRequestHeader('X-CSRF-TOKEN', token);
+	    },
+	    success: function(hola) {
+        	$("#modalOperacionExitosa").modal();
+        	document.getElementById(id).style.display = "none";
+        	console.log(hola);
+	    },
+	    error: function(err) {
+	      	$("#modalOperacionFallida").modal();
+	    }
+  });
 
 }

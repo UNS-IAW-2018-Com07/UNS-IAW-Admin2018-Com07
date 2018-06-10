@@ -1,23 +1,31 @@
 function confirmarEliminarVivienda(id){
 
-	document.getElementById('botonEliminarVivienda').addEventListener('click',eliminarVivienda(id));
+	document.getElementById('botonEliminarVivienda').setAttribute('data-id',id);
 
 	$("#modalEliminarVivienda").modal();
 
 }
 
-function eliminarVivienda(id){
+function eliminarVivienda(elem){
 
-	console.log("entre a eliminar vivienda");
+	var id=elem.dataset.id;
 
 	$.ajax({
-    url: '/eliminarVivienda/'+id,
-    type: 'DELETE',
-    success: function(result) {
-        $("#modalOperacionExitosa").modal();
-        document.getElementById(id).style.display = "none";
-    }
-	});
+	    url: '/eliminarVivienda/'+id,
+	    method: "DELETE",
+	    beforeSend: function(request) {
+	      var token = $('meta[name="csrf-token"]').attr('content');
+	      request.setRequestHeader('X-CSRF-TOKEN', token);
+	    },
+	    success: function() {
+        	$("#modalOperacionExitosa").modal();
+        	document.getElementById(id).style.display = "none";
+	    },
+	    error: function(err) {
+	      	$("#modalOperacionFallida").modal();
+	    }
+  });
+
 }
 
 
