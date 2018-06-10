@@ -9,6 +9,7 @@
 {% block body %}
 	{% include 'navbar.twig' %} 
 	<div class="container cuerpo-pagina">
+		{% include 'owners-table.twig' %}
 		<div class="row center-block margenSuperior">
 			<div class="row"> 
 		  		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-5">
@@ -90,13 +91,9 @@
 				</div>
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading">
-			    	<h3 class="panel-title">Descripción</h3>
-			  	</div>
+				<div class="panel-heading"><b>Descripción</b></div>
 			  	<div class="panel-body">
-			    	<textarea rows="4" cols="50">
-						
-					</textarea>
+			    	<textarea placeholder="Ingrese una descripcion..."></textarea>
 			  	</div>
 			</div>
 		</div>
