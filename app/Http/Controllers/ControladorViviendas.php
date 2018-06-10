@@ -20,10 +20,8 @@ class ControladorViviendas extends Controller{
     }
 
     public function destroy($id){
-    	
-    	$resp = Vivienda::destroy($id);
 
-    	return Response::json($resp);
+    	return Vivienda::destroy($id);
 
     }
 

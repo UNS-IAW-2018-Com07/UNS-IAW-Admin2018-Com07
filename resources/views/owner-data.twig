@@ -3,7 +3,7 @@
 {% else %}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 {% endif %}
-    <li class="list-group-item item-listado marginLeft" id={{propietario._id}} >
+    <li class="list-group-item item-listado marginLeft" id={{propietario._id}}>
         <div class="media"> 
             <div class="media-body"> 
                 <p class="card-title"><b>Nombre:</b> {{propietario.nombre}}</p>
@@ -12,7 +12,7 @@
                 <p class="card-text"><span class="icono"><span class="glyphicon glyphicon-earphone"></span></span>{{propietario.telefono}} </p> 
                 {% if activemenu != 'add-building' %}
                     <button 
-                         type="button" class="btn botonSinFondo pull-right margenIzquierdo" onclick="eliminarPropietario('{{propietario.cuit}}');">
+                         type="button" class="btn botonSinFondo pull-right margenIzquierdo" onclick="confirmarEliminarPropietario('{{propietario._id}}');">
                          Eliminar
                     </button>
                     <a class="btn botonSinFondo pull-right" href={{'/viviendas/'~vivienda._id}}> Editar</a>
