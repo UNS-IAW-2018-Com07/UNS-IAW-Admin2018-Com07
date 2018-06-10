@@ -21,8 +21,13 @@ class ControladorViviendas extends Controller{
 
     public function destroy($id){
 
-    	return Vivienda::destroy($id);
-
+    	// if(Vivienda::find("1")){
+     //        Vivienda::destroy("1");
+     //        return response("bien",200);
+     //    }
+     //    else
+     //       return response("mal",404);  
+        return Vivienda::findOrFail($id)->destroy($id);
     }
 
     public function agregarVivienda(){

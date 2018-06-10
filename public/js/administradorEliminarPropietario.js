@@ -17,12 +17,18 @@ function eliminarPropietario(elem){
 	      var token = $('meta[name="csrf-token"]').attr('content');
 	      request.setRequestHeader('X-CSRF-TOKEN', token);
 	    },
-	    success: function(hola) {
+	    success: function(res) {
+	    	console.log(res);
+	    	//oculta los li de las viviendas que se eliminaron
+	    	res.forEach(function (id_vivienda){
+	    		document.getElementById(id_vivienda).style.display = "none";
+	    	})
         	$("#modalOperacionExitosa").modal();
         	document.getElementById(id).style.display = "none";
-        	console.log(hola);
+        	
 	    },
-	    error: function(err) {
+	    error: function(res,err) {
+	    	console.log(res.responseText);
 	      	$("#modalOperacionFallida").modal();
 	    }
   });
