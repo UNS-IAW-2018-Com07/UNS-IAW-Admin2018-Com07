@@ -1,16 +1,22 @@
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" id={{propietario._id}}>
-    <li class="list-group-item item-listado marginLeft">
+{% if activemenu == 'add-building' %}
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-7">
+{% else %}
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+{% endif %}
+    <li class="list-group-item item-listado marginLeft" id={{propietario._id}}>
         <div class="media"> 
             <div class="media-body"> 
                 <p class="card-title"><b>Nombre:</b> {{propietario.nombre}}</p>
                 <p class="card-text"><b>CUIT :</b> {{propietario.cuit}} </p> 
                 <p class="card-text"><span class="icono"><span class="glyphicon glyphicon-envelope"></span> {{propietario.correoElectronico}} </p>
                 <p class="card-text"><span class="icono"><span class="glyphicon glyphicon-earphone"></span></span>{{propietario.telefono}} </p> 
-                 <button 
-                     type="button" class="btn botonSinFondo pull-right margenIzquierdo" onclick="confirmarEliminarPropietario('{{propietario._id}}');">
-                     Eliminar
-                </button>
-                <a class="btn botonSinFondo pull-right" href={{'/viviendas/'~vivienda._id}}> Editar</a>
+                {% if activemenu != 'add-building' %}
+                    <button 
+                         type="button" class="btn botonSinFondo pull-right margenIzquierdo" onclick="confirmarEliminarPropietario('{{propietario._id}}');">
+                         Eliminar
+                    </button>
+                    <a class="btn botonSinFondo pull-right" href={{'/viviendas/'~vivienda._id}}> Editar</a>
+                {% endif %}
             </div>
         </div>
     </li> 

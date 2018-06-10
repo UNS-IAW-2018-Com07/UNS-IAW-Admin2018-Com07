@@ -2,6 +2,24 @@
     margin-top: 15px;
 }
 
+.form-control-feedback{
+  margin-right: 10px; 
+}
+
+.listadoCUIT{
+  max-height: 170px; 
+  overflow-y: scroll; 
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: white;
+    background-color: #c4445a;
+ }
+
+ .nav-pills > li > a {
+    color: black;
+ }
+
 textarea {
   width: 100% !important;
   border: 0px;
