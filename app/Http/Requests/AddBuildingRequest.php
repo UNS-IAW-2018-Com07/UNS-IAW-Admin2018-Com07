@@ -39,18 +39,4 @@ class AddBuildingRequest extends FormRequest{
             'numeroDepto' => 'required_if:tipoVivienda,Departamento'
         ];
     }
-
-    // public function messages(){
-    //     return [
-    //         'nombre.required' => 'Nombre es un campo obligatorio.',
-    //         'cuit.required' => 'CUIT es un campo obligatorio.',
-    //         'telefono.required' => 'Teléfono es un campo obligatorio.',
-    //         'telefono.numeric' => 'Teléfono inválido.',
-    //         'correoElectronico.required' => 'Correo electrónico es un campo obligatorio.',
-    //         'cuit.between' => 'Formato de CUIT inválido.',
-    //         'cuit.numeric' => 'Formato de CUIT inválido.',
-    //         'cuit.unique' => 'CUIT ya correspondiente a otro propietario.',
-    //         'correoElectronico.email' => 'Correo electrónico inválido.'
-    //     ];
-    // }
 }

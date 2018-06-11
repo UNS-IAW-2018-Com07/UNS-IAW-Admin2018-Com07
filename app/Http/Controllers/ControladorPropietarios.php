@@ -8,7 +8,20 @@ use App\Http\Requests\AddOwnerRequest;
 use App\Http\Requests\EditOwnerRequest;
 
 class ControladorPropietarios extends Controller{
-    public function index($id){
+
+    public function indexAdd(){
+        
+        return view('add-owner',[
+            'title' => 'Añadir propietario',
+            'propietario' => [
+                'telefono' => '',
+                'nombre' => '',
+                'correoElectronico' => ''
+            ]   
+        ]);
+    }
+
+    public function indexEdit($id){
 
         $propietario=Propietario::find($id);
 

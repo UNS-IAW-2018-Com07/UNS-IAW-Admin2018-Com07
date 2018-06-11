@@ -33,7 +33,7 @@ class ControladorViviendas extends Controller{
     }
 
     public function store(AddBuildingRequest $input){
-        if(Vivienda::create(request(['tipoVivienda', 'compartido', 'operacion', 'direccion', 'precio', 'anioConstruccion', 'metrosCuadrados', 'cantAmbientes', 'cantBanios', 'cantCocheras', 'cantDormitorios', 'descripcion', 'propietario','piso','numeroDepto'])))
+        if(Vivienda::create(request(['tipoVivienda', 'compartido', 'operacion', 'direccion', 'precio', 'anioConstruccion', 'metrosCuadrados', 'cantAmbientes', 'cantBanios', 'cantCocheras', 'cantDormitorios', 'descripcion', 'propietario','piso','numeroDepto','imagenes'])))
                 return view('alert',[
                     'title' => 'Operación exitosa.',
                     'href' => '/agregarVivienda'
