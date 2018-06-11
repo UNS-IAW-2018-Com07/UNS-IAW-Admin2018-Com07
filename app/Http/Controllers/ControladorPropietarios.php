@@ -14,7 +14,8 @@ class ControladorPropietarios extends Controller{
 
         return view('add-owner',[
             'title' => 'Editar propietario',
-                'propietario' => $propietario  
+                'propietario' => $propietario,
+                'sinLogout' => 'true'  
         ]);
     }
 
