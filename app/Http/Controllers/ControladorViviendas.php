@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vivienda;
 use App\Propietario;
-use Illuminate\Http\Request;
+use App\Http\Requests\AddBuildingRequest;
 
 class ControladorViviendas extends Controller{
 
@@ -20,13 +20,6 @@ class ControladorViviendas extends Controller{
     }
 
     public function destroy($id){
-
-    	// if(Vivienda::find("1")){
-     //        Vivienda::destroy("1");
-     //        return response("bien",200);
-     //    }
-     //    else
-     //       return response("mal",404);  
         return Vivienda::findOrFail($id)->destroy($id);
     }
 
@@ -39,9 +32,17 @@ class ControladorViviendas extends Controller{
         ]);
     }
 
-    public function store(Request $request){
-        $input = $request->all();
-        // Vivienda::save($input);
-        return $input; 
+    public function store(AddBuildingRequest $input){
+        if(Vivienda::create(request(['tipoVivienda', 'compartido', 'operacion', 'direccion', 'precio', 'anioConstruccion', 'metrosCuadrados', 'cantAmbientes', 'cantBanios', 'cantCocheras', 'cantDormitorios', 'descripcion', 'propietario','piso','numeroDepto'])))
+                return view('alert',[
+                    'title' => 'Operación exitosa.',
+                    'href' => '/agregarVivienda'
+                ]);
+        else
+                return view('alert',[
+                    'title' => 'Ocurrió un error inesperado.',
+                    'href' => '/agregarVivienda'
+                ]);
+        
     }
 }

@@ -24,80 +24,105 @@ function agregarVivienda(){
 	var comp = (document.getElementById("comp").value) == 'Si'; 
 
 	var direccion = document.getElementById("direccion").value; 
-	direccion = direccionCorrecta(direccion, tipoViv); 
+	direccion = direccionCorrecta(direccion); 
+
+	var piso = null;
+	var nroDpto = null;  
 
 	if(tipoViv=='Departamento'){
-		var piso = document.getElementById("piso").value; 
-		var nroDpto = document.getElementById("nroDpto").value; 
-		if(!piso | !nroDpto){
+		piso = document.getElementById("piso").value; 
+		nroDpto = document.getElementById("nroDpto").value; 
+		if(!piso){
+			showError("piso"); 
 			var modalBody = document.getElementById("modal-agregarViv");
-			var texto = "- Los campos <b>Piso</b> y <b>Nº dpto</b> no deben ser vacíos. <br>"; 
+			var texto = "- El campo <b>Piso</b> no debe ser vacío. <br>"; 
+			modalBody.innerHTML = modalBody.innerHTML + texto;  
+			direccion = null; 
+		}
+		if(!nroDpto){
+			showError("nroDpto"); 
+			var modalBody = document.getElementById("modal-agregarViv");
+			var texto = "- El campo <b>Nº dpto</b> no debe ser vacío. <br>"; 
 			modalBody.innerHTML = modalBody.innerHTML + texto;  
 			direccion = null; 
 		}
 	}
 
 	var ambientes = document.getElementById("amb").value; 
-	ambientes = esEntero('amb',ambientes); 
+	ambientes = esEnteroPositivo('amb',ambientes); 
 	var cocheras = document.getElementById("coch").value; 
 	cocheras = esEntero('coch',cocheras);
 	var dormitorios = document.getElementById("dorm").value; 
-	dormitorios = esEntero('dorm',dormitorios);
+	dormitorios = esEnteroPositivo('dorm',dormitorios);
 	var banios = document.getElementById("ban").value; 
-	banios = esEntero('ban',banios);
+	banios = esEnteroPositivo('ban',banios);
 	var aConstruccion = document.getElementById("construccion").value; 
-	construccion = esEntero('construccion',aConstruccion);
+	construccion = esEnteroPositivo('construccion',aConstruccion);
 	var precio = document.getElementById("precio").value; 
-	precio = esEntero('precio',precio);
+	precio = esEnteroPositivo('precio',precio);
 	var metCuadr = document.getElementById("metCuad").value; 
-	metCuadr = esEntero('metCuad',metCuadr);
+	metCuadr = esEnteroPositivo('metCuad',metCuadr);
 	var descripcion = document.getElementById("descripcion").value; 
 
 	if(!ambientes | !cocheras | !dormitorios | !banios | !construccion | !precio | !metCuadr | !direccion){
 		$("#modalErrorAgregarVivienda").modal();
 	}
 	else {
-		var json = {
-			tipoVivienda: tipoViv, 
-			compartido: comp, 
-			operacion: tipoOp, 
-			direccion: direccion,
-			precio: precio, 
-			anioConstruccion: construccion, 
-			metrosCuadrados: metCuadr, 
-			cantAmbientes: ambientes, 
-			cantBanios: banios, 
-			cantCocheras: cocheras, 
-			cantDormitorios: dormitorios, 
-			descripcion: descripcion, 
-			propietario: id_prop
-		};
-		if(tipoViv=='Departamento'){
-			json.piso = piso; 
-			json.numeroDepto = nroDpto;
-		}
 		$.ajax({
-			url: '/agregarNuevaVivienda',
+			url: '/agregarVivienda',
 			method: "POST",
-			data: json, 
+			data: {
+				tipoVivienda: tipoViv, 
+				compartido: comp, 
+				operacion: tipoOp, 
+				direccion: direccion,
+				precio: precio, 
+				anioConstruccion: construccion, 
+				metrosCuadrados: metCuadr, 
+				cantAmbientes: ambientes, 
+				cantBanios: banios, 
+				cantCocheras: cocheras, 
+				cantDormitorios: dormitorios, 
+				descripcion: descripcion, 
+				propietario: id_prop,
+				piso: piso,
+				numeroDepto: nroDpto
+			}, 
 			beforeSend: function(request) {
 			    var token = $('meta[name="csrf-token"]').attr('content');
 				request.setRequestHeader('X-CSRF-TOKEN', token);
 			},
 			success: function(input) {
-				console.log(input); 
-		      	// $("#modalOperacionExitosa").modal();
-		       // 	document.getElementById(id).style.display = "none";
+		      	$("#modalOperacionExitosa").modal();
 			},
 			error: function(err) {
-			   	// $("#modalOperacionFallida").modal();
+			   	$("#modalOperacionFallida").modal();
 			}
 		 });
 	}
 }
 
+function esEnteroPositivo(id, val){
+	if($.isNumeric(val) && Number.isInteger(parseFloat(val)) && parseInt(val)>0){
+		return parseInt(val); 
+	}
+	else {
+		notifyModalPositiveInteger(id); 
+		showError(id); 
+		return null; 
+	}
+}
+
+function notifyModalPositiveInteger(id){
+	var modalBody = document.getElementById("modal-agregarViv"); 
+	var nombre = document.getElementById(id+"label").innerHTML; 
+
+	var texto = "- El campo <b>"+nombre+"</b> debe ser un número mayor a cero. <br>"; 
+	modalBody.innerHTML = modalBody.innerHTML + texto; 
+}
+
 function esEntero(id, val){
-	if($.isNumeric(val) && Number.isInteger(parseFloat(val))){
+	if($.isNumeric(val) && Number.isInteger(parseFloat(val)) && parseInt(val)>=0){
 		return parseInt(val); 
 	}
 	else {
@@ -109,10 +134,9 @@ function esEntero(id, val){
 
 function notifyModalInteger(id){
 	var modalBody = document.getElementById("modal-agregarViv"); 
-	var input = document.getElementById(id);
 	var nombre = document.getElementById(id+"label").innerHTML; 
 
-	var texto = "- El campo <b>"+nombre+"</b> debe ser un número entero. <br>"; 
+	var texto = "- El campo <b>"+nombre+"</b> debe ser un número mayor o igual a cero. <br>"; 
 	modalBody.innerHTML = modalBody.innerHTML + texto; 
 }
 
@@ -121,7 +145,7 @@ function showError(id){
 	var label = document.getElementById(id+"label");
 	var form = document.getElementById(id+"form");
 
-	form.className = "form-group has-error has-feedback col-xs-6 col-sm-4 col-md-3 col-lg-3"; 
+	$(form).addClass("has-error has-feedback"); 
 	label.className = "control-label"; 
 	input.setAttribute("aria-describedby", "inputError2Status");
 
@@ -139,7 +163,7 @@ function showError(id){
 }
 
 function eliminarFormatoError(form){
-	form.className = "form-group col-xs-6 col-sm-4 col-md-3 col-lg-3";
+	$(form).removeClass("has-error has-feedback"); 
 	var id = form.id.split("form")[0]; 
 
 	var texto = document.getElementById(id+"label").innerHTML;
@@ -161,6 +185,7 @@ function eliminarFormatoError(form){
 
 function direccionCorrecta(direccion){
 	if(!direccion){
+		showError("direccion"); 
 		notifyModalDireccion(); 
 	}
 	return direccion; 

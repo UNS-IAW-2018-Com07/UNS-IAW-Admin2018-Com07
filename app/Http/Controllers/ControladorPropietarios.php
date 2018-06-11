@@ -21,7 +21,6 @@ class ControladorPropietarios extends Controller{
                 'title' => 'Ocurrió un error inesperado.',
                 'href' => '/agregarPropietario'
             ]);
-
     }
 
     public function destroy($id){
