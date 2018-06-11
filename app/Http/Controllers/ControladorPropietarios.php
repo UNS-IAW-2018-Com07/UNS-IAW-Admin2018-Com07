@@ -8,7 +8,6 @@ use App\Http\Requests\AddOwnerRequest;
 use App\Http\Requests\EditOwnerRequest;
 
 class ControladorPropietarios extends Controller{
-
     public function index($id){
 
         $propietario=Propietario::find($id);
