@@ -1,24 +1,38 @@
 <div class="row center-block margenSuperior">
 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 listadoCUIT">
 			<ul id="nav-pill" class="nav nav-pills">
-			    <li class="active col-lg-12"><a data-toggle="pill" href={{'#prop'~propietarios[0].cuit}}>{{propietarios[0].cuit}}</a></li>
-		    	{% for propietario in propietarios|slice(1) %}
-		    		<li class="col-lg-12"><a data-toggle="pill" href={{'#prop'~propietario.cuit}}>{{propietario.cuit}}</a></li>
-	            {% endfor %}
+				{% set indice = 0 %}
+				{% if vivienda.propietario == '' %}
+				    <li class="active col-lg-12"><a data-toggle="pill" href={{'#prop'~propietarios[0].cuit}}>{{propietarios[0].cuit}}</a></li>
+			    	{% for propietario in propietarios|slice(1) %}
+			    		<li class="col-lg-12"><a data-toggle="pill" href={{'#prop'~propietario.cuit}}>{{propietario.cuit}}</a></li>
+		            {% endfor %}
+		        {% else %}
+		        	{% for propietario in propietarios %}
+		        		{% if vivienda.propietario == propietario.cuit %}
+		        			{% set indice = loop.index-1 %}
+			    			<li class="active col-lg-12"><a data-toggle="pill" href={{'#prop'~propietario.cuit}}>{{propietario.cuit}}</a></li>
+			    		{% else %}
+			    			<li class="col-lg-12"><a data-toggle="pill" href={{'#prop'~propietario.cuit}}>{{propietario.cuit}}</a></li>
+			    		{% endif %}
+		            {% endfor %}
+		        {% endif %}
 		    </ul>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 	    <div class="tab-content">
-	    	<div id='prop{{propietarios[0].cuit}}' class="tab-pane fade in active">
-	    		{% set propietario = propietarios[0] %}
+	    	<div id="{{'prop'~propietarios[indice].cuit}}" class="tab-pane fade in active">
+	    		{% set propietario = propietarios[indice] %}
 	    		{% set activemenu ='add-building'%}
 	    		{% include 'owner-data.twig' %}
 	    	</div>
-	    	{% for propietario in propietarios|slice(1) %}
-	    		<div id='prop{{propietario.cuit}}' class="tab-pane fade">
-	    			{% set activemenu ='add-building'%}
-	    			{% include 'owner-data.twig' %}
-	    		</div>
+	    	{% for propietario in propietarios %}
+	    		{% if loop.index != indice+1 %}
+		    		<div id='prop{{propietario.cuit}}' class="tab-pane fade">
+		    			{% set activemenu ='add-building'%}
+		    			{% include 'owner-data.twig' %}
+		    		</div>
+		    	{% endif %}
 	    	{% endfor %}
 	    </div>
   	</div>

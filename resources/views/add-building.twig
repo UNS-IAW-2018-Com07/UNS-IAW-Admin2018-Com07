@@ -18,8 +18,13 @@
 			    		<div class="form-group col-xs-12" id="dropdownTipoOp">
 							<label for="tipoOp">Tipo de operación </label>
       						<select class="form-control" id="tipoOp">
-      							<option value="Venta">Venta </option>
-        						<option value="Alquiler">Alquiler </option>
+      							{% if not vivienda.operacion == 'Alquiler' %}
+	      							<option selected="selected" value="Venta">Venta </option>
+	        						<option value="Alquiler">Alquiler </option>
+	        					{% else %}
+	        						<option value="Venta">Venta </option>
+	        						<option selected="selected" value="Alquiler">Alquiler </option>
+	        					{% endif %}
       						</select>
 				  		</div>
 			  		</div>
@@ -29,8 +34,13 @@
 			    		<div class="form-group col-xs-12" id="dropdownTipoViv">
 							<label for="tipoViv">Tipo de vivienda </label>
       						<select class="form-control" id="tipoViv" onchange="modificarCamposDpto()">
-      							<option value="Casa">Casa </option>
-        						<option value="Departamento">Departamento </option>
+      							{% if vivienda.tipoVivienda != 'Departamento' %}
+	      							<option selected="selected" value="Casa">Casa </option>
+	        						<option value="Departamento">Departamento </option>
+	        					{% else %}
+	        						<option value="Casa">Casa </option>
+	        						<option selected="selected" value="Departamento">Departamento </option>
+	        					{% endif %}
       						</select>
 				  		</div>
 			  		</div>
@@ -40,8 +50,13 @@
 			    		<div class="form-group col-xs-12" id="dropdownCompartido">
 							<label for="comp">Compartido </label>
       						<select class="form-control" id="comp">
-      							<option value="No">No </option>
-        						<option value="Si">Si </option>
+      							{% if vivienda.compartido == 'true'%}
+	      							<option value="No">No </option>
+	        						<option selected="selected" value="Si">Si </option>
+	        					{% else %}
+	        						<option selected="selected" value="No">No </option>
+	        						<option value="Si">Si </option>
+	        					{% endif %}
       						</select>
 				  		</div>
 			  		</div>
@@ -50,57 +65,73 @@
 			<div class="row form-row">
 				<div class="form-group col-xs-12 col-sm-8 col-md-8 col-lg-10" id="direccionform">
 	    			<label for="direccion" id="direccionlabel">Direccion</label>
-	    			<input type="text" class="form-control" id="direccion">
+	    			<input type="text" class="form-control" id="direccion" value='{{vivienda.direccion}}'>
 	  			</div>
 	  			<div class="form-group col-xs-6 col-sm-2 col-md-2 col-lg-1" id="pisoform">
 	    			<label for="piso" id="pisolabel">Piso</label>
-	    			<input type="text" class="form-control" id="piso" disabled>
+	    			{% if vivienda.tipoVivienda == 'Departamento' %}
+	    				<input type="text" class="form-control" id="piso" value='{{vivienda.piso}}'>
+	    			{% else %}
+	    				<input type="text" class="form-control" id="piso" disabled>
+	    			{% endif %}
 	  			</div>
 	  			<div class="form-group col-xs-6 col-sm-2 col-md-2 col-lg-1" id="nroDptoform">
 	    			<label for="nroDpto" id="nroDptolabel">Nº dpto</label>
-	    			<input type="text" class="form-control" id="nroDpto" disabled>
+	    			{% if vivienda.tipoVivienda == 'Departamento' %}
+	    				<input type="text" class="form-control" id="nroDpto" value='{{vivienda.numeroDepto}}'>
+	    			{% else %}
+	    				<input type="text" class="form-control" id="nroDpto" disabled>
+	    			{% endif %}
 	  			</div>
 	  		</div>
 			<div class="row form-row">
 				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="ambform">
 				  <label for="amb" id="amblabel">Ambientes</label>
-				  <input class="form-control" id="amb">
+				  <input class="form-control" id="amb" value='{{vivienda.cantAmbientes}}'>
 				</div>
 				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="dormform">
 				  <label for="dorm" id="dormlabel">Dormitorios</label>
-				  <input class="form-control" id="dorm">
+				  <input class="form-control" id="dorm" value='{{vivienda.cantDormitorios}}'>
 				</div>
 				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="banform">
 			  		<label for="ban" id="banlabel">Baños</label>
-			  		<input class="form-control" id="ban">
+			  		<input class="form-control" id="ban" value='{{vivienda.cantBanios}}'>
 				</div>
 				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="cochform">
 			  		<label for="coch" id="cochlabel">Cocheras</label>
-			  		<input class="form-control" id="coch">
+			  		<input class="form-control" id="coch" value='{{vivienda.cantCocheras}}'>
 				</div>
 				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="precioform">
 				  <label for="precio" id="preciolabel">Precio</label>
-				  <input class="form-control" id="precio">
+				  <input class="form-control" id="precio" value='{{vivienda.precio}}'>
 				</div>
 				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="construccionform">
 				  <label for="construccion" id="construccionlabel">Año Construcción</label>
-				  <input class="form-control" id="construccion">
+				  <input class="form-control" id="construccion" value='{{vivienda.anioConstruccion}}'>
 				</div>
 				<div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-3" id="metCuadform">
 				  <label for="metCuad" id="metCuadlabel">Metros cuadrados</label>
-				  <input class="form-control" id="metCuad">
+				  <input class="form-control" id="metCuad" value='{{vivienda.metrosCuadrados}}'>
 				</div>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading"><b>Descripción</b></div>
 			  	<div class="panel-body">
-			    	<textarea id="descripcion" placeholder="Ingrese una descripcion..."></textarea>
+			  		{% if not vivienda.descripcion == '' %}
+			    		<textarea id="descripcion" value='{{vivienda.descripcion}}'></textarea>
+			    	{% else %}
+			    		<textarea id="descripcion" placeholder="Ingrese una descripcion..."></textarea>
+			    	{% endif %}
 			  	</div>
 			</div>
 		</div>
 		<div class="row" align="center">
 			<div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3"> 
-				<button class="btn btnOscuro btn-block" onclick="agregarVivienda();">Agregar</button>
+				{% if vivienda._id is not defined %}
+					<button class="btn btnOscuro btn-block" onclick="agregarVivienda('/agregarVivienda');">Agregar</button>
+				{% else %}
+					<button class="btn btnOscuro btn-block" onclick={{"agregarVivienda('/editarVivienda/"~vivienda._id~"');"}}>Editar</button>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -128,6 +159,6 @@
 {% endblock %}
 
 {% block scripts %}
-	<script src="js/administradorAgregarVivienda.js"></script>
+	<script src="/js/administradorAgregarVivienda.js"></script>
 {% endblock %}
 

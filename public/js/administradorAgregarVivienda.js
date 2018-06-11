@@ -10,7 +10,7 @@ function modificarCamposDpto() {
 	}
 }
 
-function agregarVivienda(){ 
+function agregarVivienda(url){ 
 	var modalBody = document.getElementById("modal-agregarViv"); 
 	modalBody.innerHTML = ""; 
 	camposError = document.querySelectorAll('.has-error'); 
@@ -70,7 +70,7 @@ function agregarVivienda(){
 	}
 	else {
 		$.ajax({
-			url: '/agregarVivienda',
+			url: url,
 			method: "POST",
 			data: {
 				tipoVivienda: tipoViv, 
@@ -94,7 +94,7 @@ function agregarVivienda(){
 			    var token = $('meta[name="csrf-token"]').attr('content');
 				request.setRequestHeader('X-CSRF-TOKEN', token);
 			},
-			success: function(input) {
+			success: function() {
 		      	$("#modalOperacionExitosa").modal();
 			},
 			error: function(err) {
