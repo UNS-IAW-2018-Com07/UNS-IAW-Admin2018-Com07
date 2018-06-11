@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vivienda;
 use App\Propietario;
 use App\Http\Requests\AddOwnerRequest;
+use App\Http\Requests\EditOwnerRequest;
 
 class ControladorPropietarios extends Controller{
 
@@ -14,7 +15,7 @@ class ControladorPropietarios extends Controller{
 
         return view('add-owner',[
             'title' => 'Editar propietario',
-            'propietario' => $propietario
+                'propietario' => $propietario  
         ]);
     }
 
@@ -30,6 +31,23 @@ class ControladorPropietarios extends Controller{
             return view('alert',[
                 'title' => 'Ocurrió un error inesperado.',
                 'href' => '/agregarPropietario'
+            ]);
+    }
+
+    public function update(EditOwnerRequest $request,$id){
+
+        $propietario =  Propietario::find($id);
+
+        $propietario->nombre = $request->nombre;
+        $propietario->telefono = $request->telefono;
+        $propietario->correoElectronico = $request->correoElectronico;
+      
+        if($propietario->save())
+            return redirect('/');
+        else
+            return view('alert',[
+                'title' => 'Ocurrió un error inesperado.',
+                'href' => '/agregarPropietario/'+$id
             ]);
     }
 

@@ -11,8 +11,6 @@
 |
 */
 
-
-
 //VIVIENDAS
 Route::delete('/eliminarVivienda/{id}', 'ControladorViviendas@destroy')->middleware('auth');
 
@@ -35,11 +33,13 @@ Route::get('/agregarPropietario', function(){
 		]	
 	]);
 })->middleware('auth');
+   
 
-Route::get('/agregarPropietario/{id}', 'ControladorPropietarios@index')->middleware('auth');
+Route::get('/editarPropietario/{id}', 'ControladorPropietarios@index')->middleware('auth');
 
 Route::post('/agregarPropietario', 'ControladorPropietarios@store')->middleware('auth');
 
+Route::post('/editarPropietario/{id}', 'ControladorPropietarios@update')->middleware('auth');
 
 //AUTENTICACION
 
