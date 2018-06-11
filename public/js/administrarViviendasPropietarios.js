@@ -4,7 +4,6 @@ function mostrarPropietarios() {
 
     document.getElementById("barraPropietarios").style.display = "block";
     document.getElementById("barraListado").style.display = "none";
-    document.getElementById("buscador").style.display = "none";
 }
 
 function ocultarPropietarios() {
@@ -12,6 +11,5 @@ function ocultarPropietarios() {
     document.getElementById("botonAdministrarViviendas").disabled = true;
 
     document.getElementById("barraListado").style.display = "block";
-	document.getElementById("buscador").style.display = "block";
     document.getElementById("barraPropietarios").style.display = "none";
 }

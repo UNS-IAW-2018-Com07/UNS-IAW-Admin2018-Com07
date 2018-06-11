@@ -27,11 +27,19 @@ Route::delete('/eliminarPropietario/{id}', 'ControladorPropietarios@destroy')->m
 
 Route::get('/agregarPropietario', function(){
 	return view('add-owner',[
-		'title' => 'Añadir propietario'
+		'title' => 'Añadir propietario',
+		'propietario' => [
+			'telefono' => '',
+			'nombre' => '',
+			'correoElectronico' => ''
+		]	
 	]);
 })->middleware('auth');
 
+Route::get('/agregarPropietario/{id}', 'ControladorPropietarios@index')->middleware('auth');
+
 Route::post('/agregarPropietario', 'ControladorPropietarios@store')->middleware('auth');
+
 
 //AUTENTICACION
 

@@ -13,7 +13,7 @@
 	<div class="container">
 		<div class="row rowConPadding">
 			<div class="col-lg-12" align="center">
-				<h1 class="titulo">Añadir un propietario</h1>
+				<h1 class="titulo">{{title}}</h1>
 			</div>
 		</div>
 		<div class="row margenSuperior">
@@ -24,19 +24,23 @@
 				  			{{ csrf_field() }}
 		                	<label>Nombre propietario</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="nombre" name="nombre">
+				    		    <input class="form-control" type="text" id="nombre" name="nombre" value={{ propietario.nombre }}>
 				    		</div>
 				    		<label>CUIT</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="cuit" name="cuit">
+				    	  		{% if propietario.cuit is not defined %}
+				    		    	<input class="form-control" type="text" id="cuit" name="cuit">
+				    	  		{% else %}
+				    	  			<input disabled="disabled" class="form-control" type="text" id="cuit" name="cuit" value={{ propietario.cuit }}>
+				    	  		{% endif %}
 				    		</div>
 				    		<label>Correo electrónico</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="email" name="correoElectronico">
+				    		    <input class="form-control" type="text" id="email" name="correoElectronico" value={{ propietario.correoElectronico }}>
 				    		</div>
 				    		<label>Teléfono</label>
 				    	  	<div class="form-group">
-				    		    <input class="form-control" type="text" id="telefono" name="telefono">
+				    		    <input class="form-control" type="text" id="telefono" name="telefono" value={{ propietario.telefono }}>
 				    		</div>
 				    		<button type="submit" class="btn btnOscuro btn-block">Agregar</button>
 				    	</form>
