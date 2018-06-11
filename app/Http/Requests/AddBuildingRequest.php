@@ -26,7 +26,7 @@ class AddBuildingRequest extends FormRequest{
             'tipoVivienda' => 'required',
             'compartido' => 'required',
             'operacion' =>'required',
-            'direccion' => 'required|alpha_num',
+            'direccion' => 'required',
             'precio' =>'required|numeric|gt:0',
             'anioConstruccion'=>'required|numeric|gt:1800',
             'metrosCuadrados'=>'required|numeric|gt:0',
