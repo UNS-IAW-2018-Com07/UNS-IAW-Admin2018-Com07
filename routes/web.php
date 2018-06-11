@@ -18,7 +18,7 @@ Route::delete('/eliminarVivienda/{id}', 'ControladorViviendas@destroy')->middlew
 
 Route::get('/agregarVivienda', 'ControladorViviendas@agregarVivienda')->middleware('auth');
 
-Route::post('/agregarNuevaVivienda', 'ControladorViviendas@store')->middleware('auth');
+Route::post('/agregarVivienda', 'ControladorViviendas@store')->middleware('auth');
 
 Route::get('/', 'ControladorViviendas@index')->middleware('auth');
 
