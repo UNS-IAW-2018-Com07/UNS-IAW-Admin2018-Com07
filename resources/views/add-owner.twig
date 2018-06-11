@@ -28,23 +28,23 @@
 					  			{{ csrf_field() }}
 			                	<label>Nombre propietario</label>
 					    	  	<div class="form-group">
-					    		    <input class="form-control" type="text" id="nombre" name="nombre" value={{ propietario.nombre }}>
+					    		    <input class="form-control" type="text" id="nombre" name="nombre" value='{{ propietario.nombre }}'>
 					    		</div>
 					    		<label>CUIT</label>
 					    	  	<div class="form-group">
 					    	  		{% if propietario.cuit is not defined %}
 					    		    	<input class="form-control" type="text" id="cuit" name="cuit">
 					    	  		{% else %}
-					    	  			<input disabled class="form-control" type="text" id="cuit" name="cuit" value={{ propietario.cuit }}>
+					    	  			<input disabled class="form-control" type="text" id="cuit" name="cuit" value='{{ propietario.cuit }}'>
 					    	  		{% endif %}
 					    		</div>
 					    		<label>Correo electrónico</label>
 					    	  	<div class="form-group">
-					    		    <input class="form-control" type="text" id="email" name="correoElectronico" value={{ propietario.correoElectronico }}>
+					    		    <input class="form-control" type="text" id="email" name="correoElectronico" value='{{ propietario.correoElectronico }}'>
 					    		</div>
 					    		<label>Teléfono</label>
 					    	  	<div class="form-group">
-					    		    <input class="form-control" type="text" id="telefono" name="telefono" value={{ propietario.telefono }}>
+					    		    <input class="form-control" type="text" id="telefono" name="telefono" value='{{ propietario.telefono }}'>
 					    		</div>
 					    		<button type="submit" class="btn btnOscuro btn-block">Agregar</button>
 					    	</form>

@@ -29,7 +29,7 @@ function agregarVivienda(){
 	var piso = null;
 	var nroDpto = null;  
 
-	if(tipoViv=='Departamento'){
+	if(tipoViv==='Departamento'){
 		piso = document.getElementById("piso").value; 
 		nroDpto = document.getElementById("nroDpto").value; 
 		if(!piso){
@@ -64,7 +64,8 @@ function agregarVivienda(){
 	metCuadr = esEnteroPositivo('metCuad',metCuadr);
 	var descripcion = document.getElementById("descripcion").value; 
 
-	if(!ambientes | !cocheras | !dormitorios | !banios | !construccion | !precio | !metCuadr | !direccion){
+	if(!ambientes | cocheras==null | !dormitorios | !banios | !construccion | !precio | !metCuadr | !direccion){
+		console.log(ambientes+'-'+cocheras+'-'+dormitorios+'-'+banios+'-'+construccion+'-'+precio+'-'+metCuadr+'-'+direccion);
 		$("#modalErrorAgregarVivienda").modal();
 	}
 	else {
@@ -86,7 +87,8 @@ function agregarVivienda(){
 				descripcion: descripcion, 
 				propietario: id_prop,
 				piso: piso,
-				numeroDepto: nroDpto
+				numeroDepto: nroDpto,
+				imagenes: ["images/noImage.gif"]
 			}, 
 			beforeSend: function(request) {
 			    var token = $('meta[name="csrf-token"]').attr('content');

@@ -23,19 +23,10 @@ Route::get('/', 'ControladorViviendas@index')->middleware('auth');
 //PROPIETARIOS
 Route::delete('/eliminarPropietario/{id}', 'ControladorPropietarios@destroy')->middleware('auth');
 
-Route::get('/agregarPropietario', function(){
-	return view('add-owner',[
-		'title' => 'Añadir propietario',
-		'propietario' => [
-			'telefono' => '',
-			'nombre' => '',
-			'correoElectronico' => ''
-		]	
-	]);
-})->middleware('auth');
+Route::get('/agregarPropietario', 'ControladorPropietarios@indexAdd')->middleware('auth');
    
 
-Route::get('/editarPropietario/{id}', 'ControladorPropietarios@index')->middleware('auth');
+Route::get('/editarPropietario/{id}', 'ControladorPropietarios@indexEdit')->middleware('auth');
 
 Route::post('/agregarPropietario', 'ControladorPropietarios@store')->middleware('auth');
 
