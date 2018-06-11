@@ -47,6 +47,10 @@
     border-color: #f5c6cb;
 }
 
+.navbar-inverse .navbar-nav a.cerrar-sesion{
+  color: white; 
+}
+
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #F5F5F5;

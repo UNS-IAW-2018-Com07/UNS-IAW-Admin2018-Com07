@@ -2,6 +2,10 @@
     width: 52px;
 }
 
+.float-right{
+    float: right;
+}
+
 .cuerpo-pagina{
     margin-top: 55px; 
 }

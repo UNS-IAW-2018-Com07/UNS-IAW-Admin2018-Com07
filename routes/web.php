@@ -16,32 +16,28 @@
 //VIVIENDAS
 Route::delete('/eliminarVivienda/{id}', 'ControladorViviendas@destroy')->middleware('auth');
 
-Route::get('/agregarVivienda', 'ControladorViviendas@agregarVivienda');
+Route::get('/agregarVivienda', 'ControladorViviendas@agregarVivienda')->middleware('auth');
 
-Route::post('/agregarNuevaVivienda', 'ControladorViviendas@store');
+Route::post('/agregarNuevaVivienda', 'ControladorViviendas@store')->middleware('auth');
 
-Route::get('/', 'ControladorViviendas@index');
-
-//LOGIN
-Route::get('/login', function () {
-
-    return view('login', [
-    	'title' => 'Iniciar Sesion'
-    ]);
-
-});
+Route::get('/', 'ControladorViviendas@index')->middleware('auth');
 
 //PROPIETARIOS
-Route::delete('/eliminarPropietario/{id}', 'ControladorPropietarios@destroy');
+Route::delete('/eliminarPropietario/{id}', 'ControladorPropietarios@destroy')->middleware('auth');
 
 Route::get('/agregarPropietario', function(){
 	return view('add-owner',[
 		'title' => 'Añadir propietario'
 	]);
-});
+})->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/agregarPropietario', 'ControladorPropietarios@store')->middleware('auth');
+
+//AUTENTICACION
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+

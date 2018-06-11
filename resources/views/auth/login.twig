@@ -22,19 +22,19 @@
 			<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 				<div class="panel panel-default">
 				  	<div class="panel-body">
-				    	<form accept-charset="UTF-8" role="form" method="POST" action="/login">
-				    	{{ csrf_field() }}
-		                <fieldset>
-		                	<label>Nombre de usuario </label>
-				    	  	<div class="form-group">
-				    		    <input class="form-control" placeholder="Usuario" name="name" type="text">
-				    		</div>
-				    		<label>Contraseña </label>
-				    		<div class="form-group">
-				    			<input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
-				    		</div>
-				    		<input class="btn btnOscuro btn-block" type="submit" value="Iniciar Sesion">
-				    	</fieldset>
+				    	<form accept-charset="UTF-8" role="form" method="POST" action="login">
+					    	{{ csrf_field() }}
+			                <fieldset>
+			                	<label>Nombre de usuario </label>
+					    	  	<div class="form-group">
+					    		    <input class="form-control" placeholder="Usuario" name="username" type="text">
+					    		</div>
+					    		<label>Contraseña </label>
+					    		<div class="form-group">
+					    			<input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
+					    		</div>
+					    		<button class="btn btnOscuro btn-block" type="submit">Iniciar Sesion</button>
+					    	</fieldset>
 				      	</form>
 				    </div>
 				</div>
