@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vivienda;
 use App\Propietario;
 use App\Http\Requests\AddBuildingRequest;
+use Illuminate\Http\Exceptions\HttpResponseException; 
 
 class ControladorViviendas extends Controller{
 
@@ -50,7 +51,9 @@ class ControladorViviendas extends Controller{
     }
 
     public function store(AddBuildingRequest $input){
-        return Vivienda::create(request(['tipoVivienda', 'compartido', 'operacion', 'direccion', 'precio', 'anioConstruccion', 'metrosCuadrados', 'cantAmbientes', 'cantBanios', 'cantCocheras', 'cantDormitorios', 'descripcion', 'propietario','piso','numeroDepto','imagenes']));
+        Vivienda::create(request(['tipoVivienda', 'compartido', 'operacion', 'direccion', 'precio', 'anioConstruccion', 'metrosCuadrados', 'cantAmbientes', 'cantBanios', 'cantCocheras', 'cantDormitorios', 'descripcion', 'propietario','piso','numeroDepto','imagenes']));
+        $msg = "La vivienda se almacenó con éxito.";
+        return response()->json(array('msg'=> $msg), 200);
     }
 
     public function indexEdit($id){
@@ -85,6 +88,8 @@ class ControladorViviendas extends Controller{
         $vivienda->numeroDepto = $request->numeroDepto;
 
         $vivienda->save(); 
-        return redirect('/');
+
+        $msg = "La vivienda se almacenó con éxito.";
+        return response()->json(array('msg'=> $msg), 200); 
     }
 }

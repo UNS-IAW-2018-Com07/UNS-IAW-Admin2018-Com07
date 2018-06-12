@@ -94,14 +94,59 @@ function agregarVivienda(url){
 			    var token = $('meta[name="csrf-token"]').attr('content');
 				request.setRequestHeader('X-CSRF-TOKEN', token);
 			},
-			success: function() {
-		      	$("#modalOperacionExitosa").modal();
+			success: function(data) {
+				if(document.getElementById("errores")!= undefined){
+					destruirMensaje("errores"); 
+				}
+				if(document.getElementById("exito")== undefined){
+					crearMensajeConExito(); 
+				}
+         	    $("#exito").html(data.msg);
 			},
 			error: function(err) {
-			   	$("#modalOperacionFallida").modal();
+				var errores = JSON.parse(err.responseText);
+				if(document.getElementById("exito")!= undefined){
+					destruirMensaje("exito");
+				}
+				if(document.getElementById("errores")== undefined){
+					crearMensajeError(); 
+				}
+				setearMensajesDeError(errores.errors); 
 			}
 		 });
 	}
+}
+
+function crearMensajeConExito(){
+	var cuerpo = document.getElementById("cuerpo-pagina"); 
+	var div = document.createElement("div"); 
+	div.className = "alert alert-success"; 
+	div.id = 'exito';
+    cuerpo.appendChild(div); 
+}
+
+function crearMensajeError(){
+	var cuerpo = document.getElementById("cuerpo-pagina"); 
+	var div = document.createElement("div"); 
+	div.className = "alert alert-danger"; 
+	div.id = 'errores';
+    cuerpo.appendChild(div); 
+}
+
+function setearMensajesDeError(errores){
+	var err = ''; 
+	for (var key in errores) {
+	    if (errores.hasOwnProperty(key)) {
+	        err = err + errores[key] + '<br>';
+	    }
+	}
+	$("#errores").html(err);
+}
+
+function destruirMensaje(id){
+	var cuerpo = document.getElementById("cuerpo-pagina"); 
+	var div = document.getElementById(id);
+	cuerpo.removeChild(div); 
 }
 
 function esEnteroPositivo(id, val){

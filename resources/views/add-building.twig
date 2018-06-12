@@ -8,7 +8,7 @@
 
 {% block body %}
 	{% include 'navbar.twig' %} 
-	<div class="container cuerpo-pagina">
+	<div id="cuerpo-pagina" class="container cuerpo-pagina">
 		{% include 'owners-table.twig' %}
 		<hr> 
 		<div class="row center-block margenSuperior">
@@ -118,7 +118,7 @@
 				<div class="panel-heading"><b>Descripción</b></div>
 			  	<div class="panel-body">
 			  		{% if not vivienda.descripcion == '' %}
-			    		<textarea id="descripcion" value='{{vivienda.descripcion}}'></textarea>
+			    		<textarea id="descripcion">{{vivienda.descripcion}}</textarea>
 			    	{% else %}
 			    		<textarea id="descripcion" placeholder="Ingrese una descripcion..."></textarea>
 			    	{% endif %}
@@ -126,7 +126,7 @@
 			</div>
 		</div>
 		<div class="row" align="center">
-			<div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3"> 
+			<div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-6 col-lg-offset-3 margenInferior"> 
 				{% if vivienda._id is not defined %}
 					<button class="btn btnOscuro btn-block" onclick="agregarVivienda('/agregarVivienda');">Agregar</button>
 				{% else %}
